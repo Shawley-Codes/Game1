@@ -14,7 +14,7 @@ public class GenerateProblems : MonoBehaviour
     public string problem4;
     public int[] RNGList = new int[6];
     public string[] valuesList = new string[6];
-
+    public ArrayList OriginalProblems = new ArrayList(); //list of original problems used for solution submission
 
     public GenerateProblems()
     {
@@ -27,9 +27,14 @@ public class GenerateProblems : MonoBehaviour
         
     }
 
+    public void setDifficulty(int difficulty)
+    {
+        diff = difficulty;
+    }
+
     public void Awake()
     {
-        createNewProblems(diff);
+        //createNewProblems(diff);
     }
 
     // Start is called before the first frame update
@@ -39,6 +44,11 @@ public class GenerateProblems : MonoBehaviour
         ArrayList prob2 = GenerateProblem(diff);
         ArrayList prob3 = GenerateProblem(diff);
         ArrayList prob4 = GenerateProblem(diff);
+
+        OriginalProblems.Add(prob1);
+        OriginalProblems.Add(prob1);
+        OriginalProblems.Add(prob1);
+        OriginalProblems.Add(prob1);
 
         choose6(prob1, prob2, prob3, prob4);
 
@@ -183,8 +193,8 @@ public class GenerateProblems : MonoBehaviour
         prob3[rng5] = "   ";
 
         int rng6 = Random.Range(0, 3);
-        string value6 = prob4[rng5].ToString();
-        prob4[rng5] = "   ";
+        string value6 = prob4[rng6].ToString();
+        prob4[rng6] = "   ";
 
         RNGList[0] = rng1;
         RNGList[1] = rng2;

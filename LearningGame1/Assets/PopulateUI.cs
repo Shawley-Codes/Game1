@@ -8,10 +8,16 @@ using System.Linq;
 public class PopulateUI : MonoBehaviour
 {
 
+    public SnapController snapController;
+
     public TextMeshProUGUI Q1UI;
     public TextMeshProUGUI Q2UI;
     public TextMeshProUGUI Q3UI;
     public TextMeshProUGUI Q4UI;
+
+    public ArrayList ProblemList;
+    public string[] values;
+    public int[] rngList;
 
     //False for practice, True for TimeTrial
     public bool gamemode = false;
@@ -27,6 +33,10 @@ public class PopulateUI : MonoBehaviour
     public GameObject obj5;
     public GameObject obj6;
 
+    public ArrayList snapsList = new ArrayList();
+    public ArrayList activeSnaps = new ArrayList();
+
+    //read snap names as snap (Position in question (x, op, y or z) (Note: z is not included in current range, 4 should never be assigned)) _ (question number)
     public GameObject snap1_1;
     public GameObject snap1_2;
     public GameObject snap1_3;
@@ -71,14 +81,18 @@ public class PopulateUI : MonoBehaviour
     public void StartGameEasy()
     {
         GenerateProblems problems = gameObject.AddComponent<GenerateProblems>();
+        //problems.setDifficulty(1);
+        problems.createNewProblems(1);
+        ProblemList = problems.OriginalProblems;
         Q1UI.text = problems.problem1;
         Q2UI.text = problems.problem2;
         Q3UI.text = problems.problem3;
         Q4UI.text = problems.problem4;
 
-        string[] values = problems.valuesList;
+        values = problems.valuesList;
+        rngList = problems.RNGList;
         //randomize the order of the gameplay objects
-        values = shuffle(values);
+        string[] newvalues = shuffle(values);
 
         obj1.GetComponentInChildren<TMP_Text>().text = values[0];
         obj2.GetComponentInChildren<TMP_Text>().text = values[1];
@@ -87,7 +101,8 @@ public class PopulateUI : MonoBehaviour
         obj5.GetComponentInChildren<TMP_Text>().text = values[4];
         obj6.GetComponentInChildren<TMP_Text>().text = values[5];
 
-        SetSnapPoint(1, problems.RNGList);
+        SetSnapPoint(1, rngList);
+        snapController.SetDragables(activeSnaps);
 
         //if time trails increase runs
         if (gamemode)
@@ -97,15 +112,19 @@ public class PopulateUI : MonoBehaviour
     }
     public void StartGameMedium()
     {
-        GenerateProblems problems = new GenerateProblems(2);
+        GenerateProblems problems = gameObject.AddComponent<GenerateProblems>();
+        //problems.setDifficulty(1);
+        problems.createNewProblems(2);
+        ProblemList = problems.OriginalProblems;
         Q1UI.text = problems.problem1;
         Q2UI.text = problems.problem2;
         Q3UI.text = problems.problem3;
         Q4UI.text = problems.problem4;
 
-        string[] values = problems.valuesList;
+        values = problems.valuesList;
+        rngList = problems.RNGList;
         //randomize the order of the gameplay objects
-        values = shuffle(values);
+        string[] newvalues = shuffle(values);
 
         obj1.GetComponentInChildren<TMP_Text>().text = values[0];
         obj2.GetComponentInChildren<TMP_Text>().text = values[1];
@@ -114,8 +133,8 @@ public class PopulateUI : MonoBehaviour
         obj5.GetComponentInChildren<TMP_Text>().text = values[4];
         obj6.GetComponentInChildren<TMP_Text>().text = values[5];
 
-        SetSnapPoint(1, problems.RNGList);
-
+        SetSnapPoint(1, rngList);
+        snapController.SetDragables(activeSnaps);
         //if time trails increase runs
         if (gamemode)
         {
@@ -125,15 +144,19 @@ public class PopulateUI : MonoBehaviour
     }
     public void StartGameHard()
     {
-        GenerateProblems problems = new GenerateProblems(3);
+        GenerateProblems problems = gameObject.AddComponent<GenerateProblems>();
+        //problems.setDifficulty(1);
+        problems.createNewProblems(3);
+        ProblemList = problems.OriginalProblems;
         Q1UI.text = problems.problem1;
         Q2UI.text = problems.problem2;
         Q3UI.text = problems.problem3;
         Q4UI.text = problems.problem4;
 
-        string[] values = problems.valuesList;
+        values = problems.valuesList;
+        rngList = problems.RNGList;
         //randomize the order of the gameplay objects
-        values = shuffle(values);
+        string[] newvalues = shuffle(values);
 
         obj1.GetComponentInChildren<TMP_Text>().text = values[0];
         obj2.GetComponentInChildren<TMP_Text>().text = values[1];
@@ -142,7 +165,8 @@ public class PopulateUI : MonoBehaviour
         obj5.GetComponentInChildren<TMP_Text>().text = values[4];
         obj6.GetComponentInChildren<TMP_Text>().text = values[5];
 
-        SetSnapPoint(1, problems.RNGList);
+        SetSnapPoint(1, rngList);
+        snapController.SetDragables(activeSnaps);
 
         //if time trails increase runs
         if (gamemode)
@@ -178,22 +202,26 @@ public class PopulateUI : MonoBehaviour
 
     public void SetSnapPoint(int difficulty, int[] rng)
     {
-        
+        //create 2 lists, list of active snaps and general list of snaps;
         switch (difficulty){
             case 1:
                 switch (rng[0])
                 {
                     case 0:
                         snap1_1.active = true;
+                        activeSnaps.Add(snap1_1);
                         break;
                     case 1:
                         snap2_1_easy.active = true;
+                        activeSnaps.Add(snap2_1_easy);
                         break;
                     case 2:
                         snap3_1_easy.active = true;
+                        activeSnaps.Add(snap3_1_easy);
                         break;
                     case 3:
                         snap4_1_easy.active = true;
+                        activeSnaps.Add(snap4_1_easy);
                         break;
                     default:
                         break;
@@ -202,15 +230,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_1.active = true;
+                        activeSnaps.Add(snap1_1);
                         break;
                     case 1:
                         snap2_1_easy.active = true;
+                        activeSnaps.Add(snap2_1_easy);
                         break;
                     case 2:
                         snap3_1_easy.active = true;
+                        activeSnaps.Add(snap3_1_easy);
                         break;
                     case 3:
                         snap4_1_easy.active = true;
+                        activeSnaps.Add(snap4_1_easy);
                         break;
                     default:
                         break;
@@ -219,15 +251,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_2.active = true;
+                        activeSnaps.Add(snap1_2);
                         break;
                     case 1:
                         snap2_2_easy.active = true;
+                        activeSnaps.Add(snap2_2_easy);
                         break;
                     case 2:
                         snap3_2_easy.active = true;
+                        activeSnaps.Add(snap3_2_easy);
                         break;
                     case 3:
                         snap4_2_easy.active = true;
+                        activeSnaps.Add(snap4_2_easy);
                         break;
                     default:
                         break;
@@ -236,15 +272,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_2.active = true;
+                        activeSnaps.Add(snap1_2);
                         break;
                     case 1:
                         snap2_2_easy.active = true;
+                        activeSnaps.Add(snap2_2_easy);
                         break;
                     case 2:
                         snap3_2_easy.active = true;
+                        activeSnaps.Add(snap3_2_easy);
                         break;
                     case 3:
                         snap4_2_easy.active = true;
+                        activeSnaps.Add(snap4_2_easy);
                         break;
                     default:
                         break;
@@ -253,15 +293,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_3.active = true;
+                        activeSnaps.Add(snap1_3);
                         break;
                     case 1:
                         snap2_3_easy.active = true;
+                        activeSnaps.Add(snap2_3_easy);
                         break;
                     case 2:
                         snap3_3_easy.active = true;
+                        activeSnaps.Add(snap3_3_easy);
                         break;
                     case 3:
                         snap4_3_easy.active = true;
+                        activeSnaps.Add(snap4_3_easy);
                         break;
                     default:
                         break;
@@ -270,15 +314,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_4.active = true;
+                        activeSnaps.Add(snap1_4);
                         break;
                     case 1:
                         snap2_4_easy.active = true;
+                        activeSnaps.Add(snap2_4_easy);
                         break;
                     case 2:
                         snap3_4_easy.active = true;
+                        activeSnaps.Add(snap3_4_easy);
                         break;
                     case 3:
                         snap4_4_easy.active = true;
+                        activeSnaps.Add(snap4_4_easy);
                         break;
                     default:
                         break;
@@ -289,15 +337,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_1.active = true;
+                        activeSnaps.Add(snap1_1);
                         break;
                     case 1:
                         snap2_1_medium.active = true;
+                        activeSnaps.Add(snap2_1_medium);
                         break;
                     case 2:
                         snap3_1_medium.active = true;
+                        activeSnaps.Add(snap3_1_medium);
                         break;
                     case 3:
                         snap4_1_medium.active = true;
+                        activeSnaps.Add(snap4_1_medium);
                         break;
                     default:
                         break;
@@ -306,15 +358,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_1.active = true;
+                        activeSnaps.Add(snap1_1);
                         break;
                     case 1:
                         snap2_1_medium.active = true;
+                        activeSnaps.Add(snap2_1_medium);
                         break;
                     case 2:
                         snap3_1_medium.active = true;
+                        activeSnaps.Add(snap3_1_medium);
                         break;
                     case 3:
                         snap4_1_medium.active = true;
+                        activeSnaps.Add(snap4_1_medium);
                         break;
                     default:
                         break;
@@ -323,15 +379,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_2.active = true;
+                        activeSnaps.Add(snap1_2);
                         break;
                     case 1:
                         snap2_2_medium.active = true;
+                        activeSnaps.Add(snap2_2_medium);
                         break;
                     case 2:
                         snap3_2_medium.active = true;
+                        activeSnaps.Add(snap3_2_medium);
                         break;
                     case 3:
                         snap4_2_medium.active = true;
+                        activeSnaps.Add(snap4_2_medium);
                         break;
                     default:
                         break;
@@ -340,15 +400,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_2.active = true;
+                        activeSnaps.Add(snap1_2);
                         break;
                     case 1:
                         snap2_2_medium.active = true;
+                        activeSnaps.Add(snap2_2_medium);
                         break;
                     case 2:
                         snap3_2_medium.active = true;
+                        activeSnaps.Add(snap3_2_medium);
                         break;
                     case 3:
                         snap4_2_medium.active = true;
+                        activeSnaps.Add(snap4_2_medium);
                         break;
                     default:
                         break;
@@ -357,15 +421,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_3.active = true;
+                        activeSnaps.Add(snap1_3);
                         break;
                     case 1:
                         snap2_3_medium.active = true;
+                        activeSnaps.Add(snap2_3_medium);
                         break;
                     case 2:
                         snap3_3_medium.active = true;
+                        activeSnaps.Add(snap3_3_medium);
                         break;
                     case 3:
                         snap4_3_medium.active = true;
+                        activeSnaps.Add(snap4_3_medium);
                         break;
                     default:
                         break;
@@ -374,15 +442,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_4.active = true;
+                        activeSnaps.Add(snap1_4);
                         break;
                     case 1:
                         snap2_4_medium.active = true;
+                        activeSnaps.Add(snap2_4_medium);
                         break;
                     case 2:
                         snap3_4_medium.active = true;
+                        activeSnaps.Add(snap3_4_medium);
                         break;
                     case 3:
                         snap4_4_medium.active = true;
+                        activeSnaps.Add(snap4_4_medium);
                         break;
                     default:
                         break;
@@ -393,15 +465,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_1.active = true;
+                        activeSnaps.Add(snap1_1);
                         break;
                     case 1:
                         snap2_1_hard.active = true;
+                        activeSnaps.Add(snap2_1_hard);
                         break;
                     case 2:
                         snap3_1_hard.active = true;
+                        activeSnaps.Add(snap3_1_hard);
                         break;
                     case 3:
                         snap4_1_hard.active = true;
+                        activeSnaps.Add(snap4_1_hard);
                         break;
                     default:
                         break;
@@ -410,15 +486,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_1.active = true;
+                        activeSnaps.Add(snap1_1);
                         break;
                     case 1:
                         snap2_1_hard.active = true;
+                        activeSnaps.Add(snap2_1_hard);
                         break;
                     case 2:
                         snap3_1_hard.active = true;
+                        activeSnaps.Add(snap3_1_hard);
                         break;
                     case 3:
                         snap4_1_hard.active = true;
+                        activeSnaps.Add(snap4_1_hard);
                         break;
                     default:
                         break;
@@ -427,15 +507,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_2.active = true;
+                        activeSnaps.Add(snap1_2);
                         break;
                     case 1:
                         snap2_2_hard.active = true;
+                        activeSnaps.Add(snap2_2_hard);
                         break;
                     case 2:
                         snap3_2_hard.active = true;
+                        activeSnaps.Add(snap3_2_hard);
                         break;
                     case 3:
                         snap4_2_hard.active = true;
+                        activeSnaps.Add(snap4_2_hard);
                         break;
                     default:
                         break;
@@ -444,15 +528,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_2.active = true;
+                        activeSnaps.Add(snap1_2);
                         break;
                     case 1:
                         snap2_2_hard.active = true;
+                        activeSnaps.Add(snap2_2_hard);
                         break;
                     case 2:
                         snap3_2_hard.active = true;
+                        activeSnaps.Add(snap3_2_hard);
                         break;
                     case 3:
                         snap4_2_hard.active = true;
+                        activeSnaps.Add(snap4_2_hard);
                         break;
                     default:
                         break;
@@ -461,15 +549,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_3.active = true;
+                        activeSnaps.Add(snap1_3);
                         break;
                     case 1:
                         snap2_3_hard.active = true;
+                        activeSnaps.Add(snap2_3_hard);
                         break;
                     case 2:
                         snap3_3_hard.active = true;
+                        activeSnaps.Add(snap3_3_hard);
                         break;
                     case 3:
                         snap4_3_hard.active = true;
+                        activeSnaps.Add(snap4_3_hard);
                         break;
                     default:
                         break;
@@ -478,15 +570,19 @@ public class PopulateUI : MonoBehaviour
                 {
                     case 0:
                         snap1_4.active = true;
+                        activeSnaps.Add(snap1_1);
                         break;
                     case 1:
                         snap2_4_hard.active = true;
+                        activeSnaps.Add(snap2_4_hard);
                         break;
                     case 2:
                         snap3_4_hard.active = true;
+                        activeSnaps.Add(snap3_4_hard);
                         break;
                     case 3:
                         snap4_4_hard.active = true;
+                        activeSnaps.Add(snap4_4_hard);
                         break;
                     default:
                         break;

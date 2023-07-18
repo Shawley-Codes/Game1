@@ -6,11 +6,13 @@ public class DragableObject : MonoBehaviour
 {
     private bool IsDragged = false;
     private Vector3 MouseDragStartPosition;
-    private Vector3 ObjDragStartPosition;
+    public Vector3 ObjDragStartPosition;
     public Vector3 OriginalPosition;
 
     public delegate void DragEndedDelagate(DragableObject dragableObject);
+    public delegate void DragStartDelagate(DragableObject dragableObject);
     public DragEndedDelagate DragEndedCallback;
+    public DragStartDelagate DragStartCallback;
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class DragableObject : MonoBehaviour
         IsDragged = true;
         MouseDragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ObjDragStartPosition = transform.localPosition;
-
+        DragStartCallback(this);
     }
 
     private void OnMouseDrag()
