@@ -631,7 +631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 92084755}
   m_Layer: 0
-  m_Name: SnapPoint3_1_Medium
+  m_Name: SnapPoint3_1_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 95837518}
   m_Layer: 0
-  m_Name: SnapPoint4_3_Easy
+  m_Name: SnapPoint4_3_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,7 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 96887768}
   m_Layer: 0
-  m_Name: SnapPoint2 _2_Medium
+  m_Name: SnapPoint2_2_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,7 +955,7 @@ RectTransform:
   m_GameObject: {fileID: 145440164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1001, y: 1.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1491504611}
@@ -1242,7 +1242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237658887}
   m_Layer: 0
-  m_Name: SnapPoint2_3_Hard
+  m_Name: SnapPoint2_3_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1274,7 +1274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 248995931}
   m_Layer: 0
-  m_Name: SnapPoint4_3_Hard
+  m_Name: SnapPoint4_3_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1792,7 +1792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424105273}
   m_Layer: 0
-  m_Name: SnapPoint4_4_Medium
+  m_Name: SnapPoint4_4_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1824,7 +1824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427470188}
   m_Layer: 0
-  m_Name: SnapPoint4_1_Easy
+  m_Name: SnapPoint4_1_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2152,7 +2152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473800589}
   m_Layer: 0
-  m_Name: SnapPoint4_1_Medium
+  m_Name: SnapPoint4_1_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2300,7 +2300,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 110
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -2314,7 +2314,7 @@ Camera:
   m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
@@ -2344,7 +2344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 525047836}
   m_Layer: 0
-  m_Name: SnapPoint4_4_Hard
+  m_Name: SnapPoint4_4_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2376,7 +2376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 530969859}
   m_Layer: 0
-  m_Name: SnapPoint3_2_Medium
+  m_Name: SnapPoint3_2_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2946,7 +2946,7 @@ RectTransform:
   m_GameObject: {fileID: 636246299}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1003, y: 1.2125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9525533}
@@ -3324,7 +3324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 766450262}
   m_Layer: 0
-  m_Name: SnapPoint2 _2_Easy
+  m_Name: SnapPoint2_2_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3432,7 +3432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 780012616}
   m_Layer: 0
-  m_Name: SnapPoint4_2_Hard
+  m_Name: SnapPoint4_2_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3674,7 +3674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 790086606}
   m_Layer: 0
-  m_Name: SnapPoint4_3_Medium
+  m_Name: SnapPoint4_3_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4448,7 +4448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 926136133}
   m_Layer: 0
-  m_Name: SnapPoint4_1_Hard
+  m_Name: SnapPoint4_1_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4902,7 +4902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 980780194}
   m_Layer: 0
-  m_Name: SnapPoint2_4_Hard
+  m_Name: SnapPoint2_4_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4934,7 +4934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1033650320}
   m_Layer: 0
-  m_Name: SnapPoint3_3_Easy
+  m_Name: SnapPoint3_3_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4966,7 +4966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1035132168}
   m_Layer: 0
-  m_Name: SnapPoint3_3_Hard
+  m_Name: SnapPoint3_3_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4998,7 +4998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1061930139}
   m_Layer: 0
-  m_Name: SnapPoint2 _1_Medium
+  m_Name: SnapPoint2_1_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5030,7 +5030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071975411}
   m_Layer: 0
-  m_Name: SnapPoint2 _1_Easy
+  m_Name: SnapPoint2_1_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5317,14 +5317,14 @@ MonoBehaviour:
   moveable4: {fileID: 796271179}
   moveable5: {fileID: 1966087224}
   moveable6: {fileID: 2095977171}
-  right1: {fileID: 0}
-  right2: {fileID: 0}
-  right3: {fileID: 0}
-  right4: {fileID: 0}
-  wrong1: {fileID: 0}
-  wrong2: {fileID: 0}
-  wrong3: {fileID: 0}
-  wrong4: {fileID: 0}
+  right1: {fileID: 1920703117}
+  right2: {fileID: 31828500}
+  right3: {fileID: 903019606}
+  right4: {fileID: 30588905}
+  wrong1: {fileID: 1179179516}
+  wrong2: {fileID: 1749653898}
+  wrong3: {fileID: 1154498062}
+  wrong4: {fileID: 1715621596}
   MaxTime: 30
 --- !u!1 &1129567017
 GameObject:
@@ -6404,7 +6404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1276244754}
   m_Layer: 0
-  m_Name: SnapPoint3_4_Medium
+  m_Name: SnapPoint3_4_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6512,7 +6512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1360827089}
   m_Layer: 0
-  m_Name: SnapPoint3_4_Hard
+  m_Name: SnapPoint3_4_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6544,7 +6544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1373711942}
   m_Layer: 0
-  m_Name: SnapPoint4_4_Easy
+  m_Name: SnapPoint4_4_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6711,7 +6711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431820186}
   m_Layer: 0
-  m_Name: SnapPoint3_1_Hard
+  m_Name: SnapPoint3_1_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7562,7 +7562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1608006038}
   m_Layer: 0
-  m_Name: SnapPoint2 _4_Medium
+  m_Name: SnapPoint2_4_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7594,7 +7594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1621012719}
   m_Layer: 0
-  m_Name: SnapPoint4_2_Medium
+  m_Name: SnapPoint4_2_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7626,7 +7626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651424051}
   m_Layer: 0
-  m_Name: SnapPoint3_2_Easy
+  m_Name: SnapPoint3_2_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8188,7 +8188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1730375367}
   m_Layer: 0
-  m_Name: SnapPoint3_4_Easy
+  m_Name: SnapPoint3_4_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8296,7 +8296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768132306}
   m_Layer: 0
-  m_Name: SnapPoint3_2_Hard
+  m_Name: SnapPoint3_2_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8328,7 +8328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788311785}
   m_Layer: 0
-  m_Name: SnapPoint3_3_Medium
+  m_Name: SnapPoint3_3_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8653,7 +8653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1801226988}
   m_Layer: 0
-  m_Name: SnapPoint2 _3_Easy
+  m_Name: SnapPoint2_3_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8685,7 +8685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1819278900}
   m_Layer: 0
-  m_Name: SnapPoint2_2_Hard
+  m_Name: SnapPoint2_2_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8937,7 +8937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932701286}
   m_Layer: 0
-  m_Name: SnapPoint3_1_Easy
+  m_Name: SnapPoint3_1_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9398,7 +9398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1975000075}
   m_Layer: 0
-  m_Name: SnapPoint2 _4_Easy
+  m_Name: SnapPoint2_4_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9430,7 +9430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1984205009}
   m_Layer: 0
-  m_Name: SnapPoint4_2_Easy
+  m_Name: SnapPoint4_2_easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9462,7 +9462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2042197472}
   m_Layer: 0
-  m_Name: SnapPoint2 _3_Medium
+  m_Name: SnapPoint2_3_medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9841,7 +9841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2141581585}
   m_Layer: 0
-  m_Name: SnapPoint2_1_Hard
+  m_Name: SnapPoint2_1_hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -46,11 +46,17 @@ public class GenerateProblems : MonoBehaviour
         ArrayList prob4 = GenerateProblem(diff);
 
         OriginalProblems.Add(prob1);
-        OriginalProblems.Add(prob1);
-        OriginalProblems.Add(prob1);
-        OriginalProblems.Add(prob1);
+        OriginalProblems.Add(prob2);
+        OriginalProblems.Add(prob3);
+        OriginalProblems.Add(prob4);
 
-        choose6(prob1, prob2, prob3, prob4);
+        //break pointer to original list
+        ArrayList p1 = prob1;
+        ArrayList p2 = prob2;
+        ArrayList p3 = prob3;
+        ArrayList p4 = prob4;
+
+        choose6(p1, p2, p3, p4);
 
     }
 

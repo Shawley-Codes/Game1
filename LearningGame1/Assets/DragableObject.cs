@@ -13,6 +13,7 @@ public class DragableObject : MonoBehaviour
     public delegate void DragStartDelagate(DragableObject dragableObject);
     public DragEndedDelagate DragEndedCallback;
     public DragStartDelagate DragStartCallback;
+    public int DragSpeedMultiplier = 50;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class DragableObject : MonoBehaviour
     {
         if (IsDragged = true)
         {
-            transform.localPosition = ObjDragStartPosition + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - MouseDragStartPosition) * 50;
+            transform.localPosition = ObjDragStartPosition + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - MouseDragStartPosition) * DragSpeedMultiplier;
         }
     }
 

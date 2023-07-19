@@ -79,63 +79,77 @@ public class ScoreManager : MonoBehaviour
             Transform snapPoint4 = null; // q2
             Transform snapPoint5 = null; // q3
             Transform snapPoint6 = null; // q4
-            string snapValue1= "";
+            string snapValue1 = "";
             string snapValue2 = "";
             string snapValue3 = "";
             string snapValue4 = "";
             string snapValue5 = "";
             string snapValue6 = "";
+            
             foreach (Transform key in snaps.valueDict.Keys)
             {
-                if(key.name == "snap1_1" || key.name == "snap2_1_easy" || key.name == "snap2_1_medium" || key.name == "snap2_1_hard" || 
-                    key.name == "snap3_1_easy" || key.name == "snap3_1_medium" || key.name == "snap3_1_hard")
+                //Debug.Log(key.name);
+                if (key.name == "SnapPoint1_1" || key.name == "SnapPoint2_1_easy" || key.name == "SnapPoint2_1_medium" || key.name == "SnapPoint2_1_hard" || 
+                    key.name == "SnapPoint3_1_easy" || key.name == "SnapPoint3_1_medium" || key.name == "SnapPoint3_1_hard")
                 {
+                    Debug.Log("name comp worked");
                     if (snapPoint1 == null)
                     {
+                        Debug.Log("Snap point 1 should have a key");
                         snapPoint1 = key;
                         snapValue1 = snaps.valueDict[key];
-                    } else if (snapPoint2 == null)
+                    } else
                     {
+                        Debug.Log("Snap point 2 should have a key");
                         snapPoint2 = key;
                         snapValue2 = snaps.valueDict[key];
                     }
                 }
 
-                if (key.name == "snap1_2" || key.name == "snap2_2_easy" || key.name == "snap2_2_medium" || key.name == "snap2_2_hard" ||
-                    key.name == "snap3_2_easy" || key.name == "snap3_2_medium" || key.name == "snap3_2_hard")
+                if (key.name == "SnapPoint1_2" || key.name == "SnapPoint2_2_easy" || key.name == "SnapPoint2_2_medium" || key.name == "SnapPoint2_2_hard" ||
+                    key.name == "SnapPoint3_2_easy" || key.name == "SnapPoint3_2_medium" || key.name == "SnapPoint3_2_hard")
                 {
-                    if (snapPoint1 == null)
+                    if (snapPoint3 == null)
                     {
                         snapPoint3 = key;
                         snapValue3 = snaps.valueDict[key];
                     }
-                    else if (snapPoint2 == null)
+                    else
                     {
                         snapPoint4 = key;
                         snapValue4 = snaps.valueDict[key];
                     }
                 }
 
-                if (key.name == "snap1_3" || key.name == "snap2_3_easy" || key.name == "snap2_3_medium" || key.name == "snap2_3_hard" ||
-                    key.name == "snap3_3_easy" || key.name == "snap3_3_medium" || key.name == "snap3_3_hard")
+                if (key.name == "SnapPoint1_3" || key.name == "SnapPoint2_3_easy" || key.name == "SnapPoint2_3_medium" || key.name == "SnapPoint2_3_hard" ||
+                    key.name == "SnapPoint3_3_easy" || key.name == "SnapPoint3_3_medium" || key.name == "SnapPoint3_3_hard")
                 {
                     snapPoint5 = key;
                     snapValue5 = snaps.valueDict[key];
                 }
 
-                if (key.name == "snap1_4" || key.name == "snap2_4_easy" || key.name == "snap2_4_medium" || key.name == "snap2_4_hard" ||
-                    key.name == "snap3_4_easy" || key.name == "snap3_4_medium" || key.name == "snap3_4_hard")
+                if (key.name == "SnapPoint1_4" || key.name == "SnapPoint2_4_easy" || key.name == "SnapPoint2_4_medium" || key.name == "SnapPoint2_4_hard" ||
+                    key.name == "SnapPoint3_4_easy" || key.name == "SnapPoint3_4_medium" || key.name == "SnapPoint3_4_hard")
                 {
                     snapPoint6 = key;
                     snapValue6 = snaps.valueDict[key];
                 }
             }
 
+            Debug.Log("Q1");
             //get question 1 correct
             sol1 = Correct(snapValue1, snapPoint1, snapValue2, snapPoint2, (ArrayList)OrinalProblems[0], rngList);
-            sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[0], rngList);
-            sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[0], rngList);
-            sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[0], rngList);
+            Debug.Log("Q2");
+            sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[1], rngList);
+            Debug.Log("Q3");
+            sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[2], rngList);
+            Debug.Log("Q4");
+            sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[3], rngList);
+
+            Debug.Log(sol1);
+            Debug.Log(sol2);
+            Debug.Log(sol3);
+            Debug.Log(sol4);
 
 
             if (sol1)
@@ -143,7 +157,7 @@ public class ScoreManager : MonoBehaviour
                 right1.SetActive(true);
             } else
             {
-                wrong1.SetActive(false);
+                wrong1.SetActive(true);
             }
             if (sol2)
             {
@@ -151,7 +165,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                wrong2.SetActive(false);
+                wrong2.SetActive(true);
             }
             if (sol3)
             {
@@ -159,7 +173,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                wrong3.SetActive(false);
+                wrong3.SetActive(true);
             }
             if (sol4)
             {
@@ -167,7 +181,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                wrong4.SetActive(false);
+                wrong4.SetActive(true);
             }
 
 
@@ -204,56 +218,64 @@ public class ScoreManager : MonoBehaviour
             string snapValue6 = "";
             foreach (Transform key in snaps.valueDict.Keys)
             {
-                if (key.name == "snap1_1" || key.name == "snap2_1_easy" || key.name == "snap2_1_medium" || key.name == "snap2_1_hard" ||
-                    key.name == "snap3_1_easy" || key.name == "snap3_1_medium" || key.name == "snap3_1_hard")
+                Debug.Log(key.name);
+                if (key.name == "SnapPoint1_1" || key.name == "SnapPoint2_1_easy" || key.name == "SnapPoint2_1_medium" || key.name == "SnapPoint2_1_hard" ||
+                    key.name == "SnapPoint3_1_easy" || key.name == "SnapPoint3_1_medium" || key.name == "SnapPoint3_1_hard")
                 {
                     if (snapPoint1 == null)
                     {
+                        Debug.Log("Snap 1 should have key");
                         snapPoint1 = key;
                         snapValue1 = snaps.valueDict[key];
                     }
-                    else if (snapPoint2 == null)
+                    else
                     {
+                        Debug.Log("Snap 2 should have key");
                         snapPoint2 = key;
                         snapValue2 = snaps.valueDict[key];
                     }
                 }
 
-                if (key.name == "snap1_2" || key.name == "snap2_2_easy" || key.name == "snap2_2_medium" || key.name == "snap2_2_hard" ||
-                    key.name == "snap3_2_easy" || key.name == "snap3_2_medium" || key.name == "snap3_2_hard")
+                if (key.name == "SnapPoint1_2" || key.name == "SnapPoint2_2_easy" || key.name == "SnapPoint2_2_medium" || key.name == "SnapPoint2_2_hard" ||
+                    key.name == "SnapPoint3_2_easy" || key.name == "SnapPoint3_2_medium" || key.name == "SnapPoint3_2_hard")
                 {
-                    if (snapPoint1 == null)
+                    if (snapPoint3 == null)
                     {
+                        Debug.Log("Snap 3 should have key");
                         snapPoint3 = key;
                         snapValue3 = snaps.valueDict[key];
                     }
-                    else if (snapPoint2 == null)
+                    else if (snapPoint4 == null)
                     {
                         snapPoint4 = key;
                         snapValue4 = snaps.valueDict[key];
                     }
                 }
 
-                if (key.name == "snap1_3" || key.name == "snap2_3_easy" || key.name == "snap2_3_medium" || key.name == "snap2_3_hard" ||
-                    key.name == "snap3_3_easy" || key.name == "snap3_3_medium" || key.name == "snap3_3_hard")
+                if (key.name == "SnapPoint1_3" || key.name == "SnapPoint2_3_easy" || key.name == "SnapPoint2_3_medium" || key.name == "SnapPoint2_3_hard" ||
+                    key.name == "SnapPoint3_3_easy" || key.name == "SnapPoint3_3_medium" || key.name == "SnapPoint3_3_hard")
                 {
                     snapPoint5 = key;
                     snapValue5 = snaps.valueDict[key];
                 }
 
-                if (key.name == "snap1_4" || key.name == "snap2_4_easy" || key.name == "snap2_4_medium" || key.name == "snap2_4_hard" ||
-                    key.name == "snap3_4_easy" || key.name == "snap3_4_medium" || key.name == "snap3_4_hard")
+                if (key.name == "SnapPoint1_4" || key.name == "SnapPoint2_4_easy" || key.name == "SnapPoint2_4_medium" || key.name == "SnapPoint2_4_hard" ||
+                    key.name == "SnapPoint3_4_easy" || key.name == "SnapPoint3_4_medium" || key.name == "SnapPoint3_4_hard")
                 {
                     snapPoint6 = key;
                     snapValue6 = snaps.valueDict[key];
                 }
             }
 
+            Debug.Log("Q1");
             //get question 1 correct
             sol1 = Correct(snapValue1, snapPoint1, snapValue2, snapPoint2, (ArrayList)OrinalProblems[0], rngList);
-            sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[0], rngList);
-            sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[0], rngList);
-            sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[0], rngList);
+            Debug.Log("Q2");
+            sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[1], rngList);
+            Debug.Log("Q3");
+            sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[2], rngList);
+            Debug.Log("Q4");
+            sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[3], rngList);
 
 
             if (sol1)
@@ -300,16 +322,17 @@ public class ScoreManager : MonoBehaviour
         //int z;
         string op;
         //x op y = z
-
+        
 
         //get x from snap or original problem
-        if (rng[0] == 0 || rng[1] == 0 || rng[2] == 0 || rng[3] == 0 || rng[4] == 0 || rng[5] == 0 || rng[6] == 0)
+        if ((rng[0] == 0 || rng[1] == 0 || rng[2] == 0 || rng[3] == 0 || rng[4] == 0 || rng[5] == 0) && Problem[0] != " " && Problem[0] != "  " && Problem[0] != "   ")
         {
+            //Debug.Log("x = " + Problem[0]);
             x = (int)Problem[0];
-        } else if(snapPoint.name == "snap1_1" || snapPoint.name == "snap1_2" || snapPoint.name == "snap1_3" || snapPoint.name == "snap1_4")
+        } else if(snapPoint.name == "SnapPoint1_1" || snapPoint.name == "SnapPoint1_2" || snapPoint.name == "SnapPoint1_3" || snapPoint.name == "SnapPoint1_4")
         {
             x = int.Parse(snapValue);
-        } else if(snapPoint2.name == "snap1_1" || snapPoint2.name == "snap1_2" || snapPoint2.name == "snap1_3" || snapPoint2.name == "snap1_4")
+        } else if(snapPoint2.name == "SnapPoint1_1" || snapPoint2.name == "SnapPoint1_2" || snapPoint2.name == "SnapPoint1_3" || snapPoint2.name == "SnapPoint1_4")
         {
             x = int.Parse(snapValue2);
         } else
@@ -318,19 +341,20 @@ public class ScoreManager : MonoBehaviour
         }
 
         //get op
-        if (rng[0] == 1 || rng[1] == 1 || rng[2] == 1 || rng[3] == 1 || rng[4] == 1 || rng[5] == 1 || rng[6] == 1)
+        if ((rng[0] == 1 || rng[1] == 1 || rng[2] == 1 || rng[3] == 1 || rng[4] == 1 || rng[5] == 1) && Problem[1] != " " && Problem[1] != "  " && Problem[1] != "   ")
         {
+            //Debug.Log(Problem[1]);
             op = (string)Problem[1];
         }
-        else if (snapPoint.name == "snap2_1_easy" || snapPoint.name == "snap2_2_easy" || snapPoint.name == "snap2_3_easy" || snapPoint.name == "snap2_4_easy"
-            || snapPoint.name == "snap2_1_medium" || snapPoint.name == "snap2_2_medium" || snapPoint.name == "snap2_3_medium" || snapPoint.name == "snap2_4_medium"
-            || snapPoint.name == "snap2_1_hard" || snapPoint.name == "snap2_2_hard" || snapPoint.name == "snap2_3_hard" || snapPoint.name == "snap2_4_hard")
+        else if (snapPoint.name == "SnapPoint2_1_easy" || snapPoint.name == "SnapPoint2_2_easy" || snapPoint.name == "SnapPoint2_3_easy" || snapPoint.name == "SnapPoint2_4_easy"
+            || snapPoint.name == "SnapPoint2_1_medium" || snapPoint.name == "SnapPoint2_2_medium" || snapPoint.name == "SnapPoint2_3_medium" || snapPoint.name == "SnapPoint2_4_medium"
+            || snapPoint.name == "SnapPoint2_1_hard" || snapPoint.name == "SnapPoint2_2_hard" || snapPoint.name == "SnapPoint2_3_hard" || snapPoint.name == "SnapPoint2_4_hard")
         {
             op = snapValue;
         }
-        else if (snapPoint2.name == "snap2_1_easy" || snapPoint2.name == "snap2_2_easy" || snapPoint2.name == "snap2_3_easy" || snapPoint2.name == "snap2_4_easy"
-            || snapPoint2.name == "snap2_1_medium" || snapPoint2.name == "snap2_2_medium" || snapPoint2.name == "snap2_3_medium" || snapPoint2.name == "snap2_4_medium"
-            || snapPoint2.name == "snap2_1_hard" || snapPoint2.name == "snap2_2_hard" || snapPoint2.name == "snap2_3_hard" || snapPoint2.name == "snap2_4_hard")
+        else if (snapPoint2.name == "SnapPoint2_1_easy" || snapPoint2.name == "SnapPoint2_2_easy" || snapPoint2.name == "SnapPoint2_3_easy" || snapPoint2.name == "SnapPoint2_4_easy"
+            || snapPoint2.name == "SnapPoint2_1_medium" || snapPoint2.name == "SnapPoint2_2_medium" || snapPoint2.name == "SnapPoint2_3_medium" || snapPoint2.name == "SnapPoint2_4_medium"
+            || snapPoint2.name == "SnapPoint2_1_hard" || snapPoint2.name == "SnapPoint2_2_hard" || snapPoint2.name == "SnapPoint2_3_hard" || snapPoint2.name == "SnapPoint2_4_hard")
         {
             op = snapValue2;
         }
@@ -340,19 +364,20 @@ public class ScoreManager : MonoBehaviour
         }
 
         //get y
-        if (rng[0] == 2 || rng[1] == 2 || rng[2] == 2 || rng[3] == 2 || rng[4] == 2 || rng[5] == 2 || rng[6] == 2)
+        if ((rng[0] == 2 || rng[1] == 2 || rng[2] == 2 || rng[3] == 2 || rng[4] == 2 || rng[5] == 2) && Problem[2] != " " && Problem[2] != "  " && Problem[2] != "   ")
         {
+            //Debug.Log(Problem[2]);
             y = (int)Problem[2];
         }
-        else if (snapPoint.name == "snap3_1_easy" || snapPoint.name == "snap3_2_easy" || snapPoint.name == "snap3_3_easy" || snapPoint.name == "snap3_4_easy" 
-            || snapPoint.name == "snap3_1_medium" || snapPoint.name == "snap3_2_medium" || snapPoint.name == "snap3_3_medium" || snapPoint.name == "snap3_4_medium"
-            || snapPoint.name == "snap3_1_hard" || snapPoint.name == "snap3_2_hard" || snapPoint.name == "snap3_3_hard" || snapPoint.name == "snap3_4_hard")
+        else if (snapPoint.name == "SnapPoint3_1_easy" || snapPoint.name == "SnapPoint3_2_easy" || snapPoint.name == "SnapPoint3_3_easy" || snapPoint.name == "SnapPoint3_4_easy" 
+            || snapPoint.name == "SnapPoint3_1_medium" || snapPoint.name == "SnapPoint3_2_medium" || snapPoint.name == "SnapPoint3_3_medium" || snapPoint.name == "SnapPoint3_4_medium"
+            || snapPoint.name == "SnapPoint3_1_hard" || snapPoint.name == "SnapPoint3_2_hard" || snapPoint.name == "SnapPoint3_3_hard" || snapPoint.name == "SnapPoint3_4_hard")
         {
             y = int.Parse(snapValue);
         }
-        else if (snapPoint2.name == "snap3_1_easy" || snapPoint2.name == "snap3_2_easy" || snapPoint2.name == "snap3_3_easy" || snapPoint2.name == "snap3_4_easy"
-          || snapPoint2.name == "snap3_1_medium" || snapPoint2.name == "snap3_2_medium" || snapPoint2.name == "snap3_3_medium" || snapPoint2.name == "snap3_4_medium"
-          || snapPoint2.name == "snap3_1_hard" || snapPoint2.name == "snap3_2_hard" || snapPoint2.name == "snap3_3_hard" || snapPoint2.name == "snap3_4_hard")
+        else if (snapPoint2.name == "SnapPoint3_1_easy" || snapPoint2.name == "SnapPoint3_2_easy" || snapPoint2.name == "SnapPoint3_3_easy" || snapPoint2.name == "SnapPoint3_4_easy"
+          || snapPoint2.name == "SnapPoint3_1_medium" || snapPoint2.name == "SnapPoint3_2_medium" || snapPoint2.name == "SnapPoint3_3_medium" || snapPoint2.name == "SnapPoint3_4_medium"
+          || snapPoint2.name == "SnapPoint3_1_hard" || snapPoint2.name == "SnapPoint3_2_hard" || snapPoint2.name == "SnapPoint3_3_hard" || snapPoint2.name == "SnapPoint3_4_hard")
         {
             y = int.Parse(snapValue2);
         }
@@ -360,6 +385,11 @@ public class ScoreManager : MonoBehaviour
         {
             y = 0; //y cannot be 0 so z will always be incorrect
         }
+
+        Debug.Log((int)Problem[3]);
+        Debug.Log(x + y);
+        Debug.Log(x - y);
+        Debug.Log(x * y);
 
         //compare to z
         switch (op)
@@ -405,11 +435,11 @@ public class ScoreManager : MonoBehaviour
         //x op y = z
 
         //get x from snap or original problem
-        if (rng[0] == 0 || rng[1] == 0 || rng[2] == 0 || rng[3] == 0 || rng[4] == 0 || rng[5] == 0 || rng[6] == 0)
+        if ((rng[0] == 0 || rng[1] == 0 || rng[2] == 0 || rng[3] == 0 || rng[4] == 0 || rng[5] == 0) && Problem[0] != " " && Problem[0] != "  " && Problem[0] != "   ")
         {
             x = (int)Problem[0];
         }
-        else if (snapPoint.name == "snap1_1" || snapPoint.name == "snap1_2" || snapPoint.name == "snap1_3" || snapPoint.name == "snap1_4")
+        else if (snapPoint.name == "SnapPoint1_1" || snapPoint.name == "SnapPoint1_2" || snapPoint.name == "SnapPoint1_3" || snapPoint.name == "SnapPoint1_4")
         {
             x = int.Parse(snapValue);
         }
@@ -419,13 +449,13 @@ public class ScoreManager : MonoBehaviour
         }
 
         //get op
-        if (rng[0] == 1 || rng[1] == 1 || rng[2] == 1 || rng[3] == 1 || rng[4] == 1 || rng[5] == 1 || rng[6] == 1)
+        if ((rng[0] == 1 || rng[1] == 1 || rng[2] == 1 || rng[3] == 1 || rng[4] == 1 || rng[5] == 1) && Problem[1] != " " && Problem[1] != "  " && Problem[1] != "   ")
         {
             op = (string)Problem[1];
         }
-        else if (snapPoint.name == "snap2_1_easy" || snapPoint.name == "snap2_2_easy" || snapPoint.name == "snap2_3_easy" || snapPoint.name == "snap2_4_easy"
-            || snapPoint.name == "snap2_1_medium" || snapPoint.name == "snap2_2_medium" || snapPoint.name == "snap2_3_medium" || snapPoint.name == "snap2_4_medium"
-            || snapPoint.name == "snap2_1_hard" || snapPoint.name == "snap2_2_hard" || snapPoint.name == "snap2_3_hard" || snapPoint.name == "snap2_4_hard")
+        else if (snapPoint.name == "SnapPoint2_1_easy" || snapPoint.name == "SnapPoint2_2_easy" || snapPoint.name == "SnapPoint2_3_easy" || snapPoint.name == "SnapPoint2_4_easy"
+            || snapPoint.name == "SnapPoint2_1_medium" || snapPoint.name == "SnapPoint2_2_medium" || snapPoint.name == "SnapPoint2_3_medium" || snapPoint.name == "SnapPoint2_4_medium"
+            || snapPoint.name == "SnapPoint2_1_hard" || snapPoint.name == "SnapPoint2_2_hard" || snapPoint.name == "SnapPoint2_3_hard" || snapPoint.name == "SnapPoint2_4_hard")
         {
             op = snapValue;
         }
@@ -435,13 +465,13 @@ public class ScoreManager : MonoBehaviour
         }
 
         //get y
-        if (rng[0] == 2 || rng[1] == 2 || rng[2] == 2 || rng[3] == 2 || rng[4] == 2 || rng[5] == 2 || rng[6] == 2)
+        if ((rng[0] == 2 || rng[1] == 2 || rng[2] == 2 || rng[3] == 2 || rng[4] == 2 || rng[5] == 2) && Problem[2] != " " && Problem[2] != "  " && Problem[2] != "   ")
         {
             y = (int)Problem[2];
         }
-        else if (snapPoint.name == "snap3_1_easy" || snapPoint.name == "snap3_2_easy" || snapPoint.name == "snap3_3_easy" || snapPoint.name == "snap3_4_easy"
-            || snapPoint.name == "snap3_1_medium" || snapPoint.name == "snap3_2_medium" || snapPoint.name == "snap3_3_medium" || snapPoint.name == "snap3_4_medium"
-            || snapPoint.name == "snap3_1_hard" || snapPoint.name == "snap3_2_hard" || snapPoint.name == "snap3_3_hard" || snapPoint.name == "snap3_4_hard")
+        else if (snapPoint.name == "SnapPoint3_1_easy" || snapPoint.name == "SnapPoint3_2_easy" || snapPoint.name == "SnapPoint3_3_easy" || snapPoint.name == "SnapPoint3_4_easy"
+            || snapPoint.name == "SnapPoint3_1_medium" || snapPoint.name == "SnapPoint3_2_medium" || snapPoint.name == "SnapPoint3_3_medium" || snapPoint.name == "SnapPoint3_4_medium"
+            || snapPoint.name == "SnapPoint3_1_hard" || snapPoint.name == "SnapPoint3_2_hard" || snapPoint.name == "SnapPoint3_3_hard" || snapPoint.name == "SnapPoint3_4_hard")
         {
             y = int.Parse(snapValue);
         }

@@ -81,7 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2409a4bd9d175bc4bb1f6aecade31af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjDragStartPosition: {x: 0, y: 0, z: 0}
   OriginalPosition: {x: 0, y: 0, z: 0}
+  DragSpeedMultiplier: 55
 --- !u!1 &3898304127242657123
 GameObject:
   m_ObjectHideFlags: 0
