@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjDragStartPosition: {x: 0, y: 0, z: 0}
   OriginalPosition: {x: 0, y: 0, z: 0}
-  DragSpeedMultiplier: 55
+  DragSpeedMultiplier: 59
 --- !u!1 &3898304127242657123
 GameObject:
   m_ObjectHideFlags: 0

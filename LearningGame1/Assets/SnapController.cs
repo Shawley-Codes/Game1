@@ -22,6 +22,7 @@ public class SnapController : MonoBehaviour
         foreach (GameObject snaps in activeSnaps)
         {
             activePoints.Add(snaps.transform);
+
         }
         //create delegate for letting go of objects
         foreach (DragableObject dragable in gameplayObj) {
@@ -80,7 +81,7 @@ public class SnapController : MonoBehaviour
             {
                 string snapPointValue = childText.text;
                 valueDict.Add(ClosestSnapPoint, snapPointValue);
-                Debug.Log(ClosestSnapPoint + "," + snapPointValue);
+                //Debug.Log(ClosestSnapPoint + "," + snapPointValue);
             }
             //Update occupied status
             occupiedSnapPoints.Add(ClosestSnapPoint);
@@ -94,6 +95,7 @@ public class SnapController : MonoBehaviour
 
     public void Reset()
     {
+
         occupiedSnapPoints.Clear();
         activePoints.Clear();
         valueDict.Clear();

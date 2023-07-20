@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.UIElements;
 using TMPro;
 using UnityEngine.UI;
 
@@ -68,8 +67,6 @@ public class ScoreManager : MonoBehaviour
         {
             //if time trials, generate a new set of problems and award score for that level.
             Debug.Log("Submit Time Trials");
-            points += pointValue + (pointValue * Mathf.FloorToInt(currentTime % 60)/10);
-            score.text = "Score: " + points.ToString();
 
             //sorted dictionary will not work so a method instead is to check for which snaps will correlate to each problem
             //Debug.Log(snaps.valueDict);
@@ -85,24 +82,29 @@ public class ScoreManager : MonoBehaviour
             string snapValue4 = "";
             string snapValue5 = "";
             string snapValue6 = "";
-            
+            bool q1e = false;
+            bool q2e = false;
+            bool q3e = false;
+            bool q4e = false;
+
             foreach (Transform key in snaps.valueDict.Keys)
             {
                 //Debug.Log(key.name);
                 if (key.name == "SnapPoint1_1" || key.name == "SnapPoint2_1_easy" || key.name == "SnapPoint2_1_medium" || key.name == "SnapPoint2_1_hard" || 
                     key.name == "SnapPoint3_1_easy" || key.name == "SnapPoint3_1_medium" || key.name == "SnapPoint3_1_hard")
                 {
-                    Debug.Log("name comp worked");
+                    //Debug.Log("name comp worked");
                     if (snapPoint1 == null)
                     {
-                        Debug.Log("Snap point 1 should have a key");
+                        //Debug.Log("Snap point 1 should have a key");
                         snapPoint1 = key;
                         snapValue1 = snaps.valueDict[key];
                     } else
                     {
-                        Debug.Log("Snap point 2 should have a key");
+                        //Debug.Log("Snap point 2 should have a key");
                         snapPoint2 = key;
                         snapValue2 = snaps.valueDict[key];
+                        q1e = true;
                     }
                 }
 
@@ -118,6 +120,7 @@ public class ScoreManager : MonoBehaviour
                     {
                         snapPoint4 = key;
                         snapValue4 = snaps.valueDict[key];
+                        q2e = true;
                     }
                 }
 
@@ -126,6 +129,7 @@ public class ScoreManager : MonoBehaviour
                 {
                     snapPoint5 = key;
                     snapValue5 = snaps.valueDict[key];
+                    q3e = true;
                 }
 
                 if (key.name == "SnapPoint1_4" || key.name == "SnapPoint2_4_easy" || key.name == "SnapPoint2_4_medium" || key.name == "SnapPoint2_4_hard" ||
@@ -133,18 +137,48 @@ public class ScoreManager : MonoBehaviour
                 {
                     snapPoint6 = key;
                     snapValue6 = snaps.valueDict[key];
+                    q4e = true;
                 }
             }
 
-            Debug.Log("Q1");
+            
+            
             //get question 1 correct
-            sol1 = Correct(snapValue1, snapPoint1, snapValue2, snapPoint2, (ArrayList)OrinalProblems[0], rngList);
-            Debug.Log("Q2");
-            sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[1], rngList);
-            Debug.Log("Q3");
-            sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[2], rngList);
-            Debug.Log("Q4");
-            sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[3], rngList);
+            if (q1e)
+            {
+                Debug.Log("Q1");
+                sol1 = Correct(snapValue1, snapPoint1, snapValue2, snapPoint2, (ArrayList)OrinalProblems[0], rngList);
+            } else
+            {
+                sol1 = false;
+            }
+            if (q2e)
+            {
+                Debug.Log("Q2");
+                sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[1], rngList);
+            }
+            else
+            {
+                sol2 = false;
+            }
+            if (q3e)
+            {
+                Debug.Log("Q3");
+                sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[2], rngList);
+            }
+            else
+            {
+                sol3 = false;
+            }
+            if (q4e)
+            {
+                Debug.Log("Q4");
+                sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[3], rngList);
+            }
+            else
+            {
+                sol4 = false;
+            }
 
             Debug.Log(sol1);
             Debug.Log(sol2);
@@ -188,6 +222,8 @@ public class ScoreManager : MonoBehaviour
             //if questions are correct, active next set button
             if (sol1 && sol2 && sol3 && sol4)
             {
+                points += pointValue + (pointValue * (Mathf.FloorToInt(currentTime % 60) / 10));
+                score.text = "Score: " + points.ToString();
                 NextSetButton.SetActive(true);
             } else
             {
@@ -216,23 +252,30 @@ public class ScoreManager : MonoBehaviour
             string snapValue4 = "";
             string snapValue5 = "";
             string snapValue6 = "";
+            bool q1e = false;
+            bool q2e = false;
+            bool q3e = false;
+            bool q4e = false;
+
             foreach (Transform key in snaps.valueDict.Keys)
             {
-                Debug.Log(key.name);
+                //Debug.Log(key.name);
                 if (key.name == "SnapPoint1_1" || key.name == "SnapPoint2_1_easy" || key.name == "SnapPoint2_1_medium" || key.name == "SnapPoint2_1_hard" ||
                     key.name == "SnapPoint3_1_easy" || key.name == "SnapPoint3_1_medium" || key.name == "SnapPoint3_1_hard")
                 {
+                    //Debug.Log("name comp worked");
                     if (snapPoint1 == null)
                     {
-                        Debug.Log("Snap 1 should have key");
+                        //Debug.Log("Snap point 1 should have a key");
                         snapPoint1 = key;
                         snapValue1 = snaps.valueDict[key];
                     }
                     else
                     {
-                        Debug.Log("Snap 2 should have key");
+                        //Debug.Log("Snap point 2 should have a key");
                         snapPoint2 = key;
                         snapValue2 = snaps.valueDict[key];
+                        q1e = true;
                     }
                 }
 
@@ -241,14 +284,14 @@ public class ScoreManager : MonoBehaviour
                 {
                     if (snapPoint3 == null)
                     {
-                        Debug.Log("Snap 3 should have key");
                         snapPoint3 = key;
                         snapValue3 = snaps.valueDict[key];
                     }
-                    else if (snapPoint4 == null)
+                    else
                     {
                         snapPoint4 = key;
                         snapValue4 = snaps.valueDict[key];
+                        q2e = true;
                     }
                 }
 
@@ -257,6 +300,7 @@ public class ScoreManager : MonoBehaviour
                 {
                     snapPoint5 = key;
                     snapValue5 = snaps.valueDict[key];
+                    q3e = true;
                 }
 
                 if (key.name == "SnapPoint1_4" || key.name == "SnapPoint2_4_easy" || key.name == "SnapPoint2_4_medium" || key.name == "SnapPoint2_4_hard" ||
@@ -264,18 +308,54 @@ public class ScoreManager : MonoBehaviour
                 {
                     snapPoint6 = key;
                     snapValue6 = snaps.valueDict[key];
+                    q4e = true;
                 }
             }
 
-            Debug.Log("Q1");
+
+
             //get question 1 correct
-            sol1 = Correct(snapValue1, snapPoint1, snapValue2, snapPoint2, (ArrayList)OrinalProblems[0], rngList);
-            Debug.Log("Q2");
-            sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[1], rngList);
-            Debug.Log("Q3");
-            sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[2], rngList);
-            Debug.Log("Q4");
-            sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[3], rngList);
+            if (q1e)
+            {
+                Debug.Log("Q1");
+                sol1 = Correct(snapValue1, snapPoint1, snapValue2, snapPoint2, (ArrayList)OrinalProblems[0], rngList);
+            }
+            else
+            {
+                sol1 = false;
+            }
+            if (q2e)
+            {
+                Debug.Log("Q2");
+                sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[1], rngList);
+            }
+            else
+            {
+                sol2 = false;
+            }
+            if (q3e)
+            {
+                Debug.Log("Q3");
+                sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[2], rngList);
+            }
+            else
+            {
+                sol3 = false;
+            }
+            if (q4e)
+            {
+                Debug.Log("Q4");
+                sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[3], rngList);
+            }
+            else
+            {
+                sol4 = false;
+            }
+
+            Debug.Log(sol1);
+            Debug.Log(sol2);
+            Debug.Log(sol3);
+            Debug.Log(sol4);
 
 
             if (sol1)
@@ -284,7 +364,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                wrong1.SetActive(false);
+                wrong1.SetActive(true);
             }
             if (sol2)
             {
@@ -292,7 +372,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                wrong2.SetActive(false);
+                wrong2.SetActive(true);
             }
             if (sol3)
             {
@@ -300,7 +380,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                wrong3.SetActive(false);
+                wrong3.SetActive(true);
             }
             if (sol4)
             {
@@ -308,7 +388,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-                wrong4.SetActive(false);
+                wrong4.SetActive(true);
             }
 
         }
@@ -385,11 +465,6 @@ public class ScoreManager : MonoBehaviour
         {
             y = 0; //y cannot be 0 so z will always be incorrect
         }
-
-        Debug.Log((int)Problem[3]);
-        Debug.Log(x + y);
-        Debug.Log(x - y);
-        Debug.Log(x * y);
 
         //compare to z
         switch (op)
@@ -536,11 +611,19 @@ public class ScoreManager : MonoBehaviour
         wrong2.SetActive(false);
         wrong3.SetActive(false);
         wrong4.SetActive(false);
-        //right2.active == false;
-        //right3.active == false;
-        //right4.active == false;
+        
     }
 
+    public void End()
+    {
+        gameInfo.gamemode = false;
+        gameInfo.runs = 0;
+        points = 0;
+        score.text = "";
+        score.enabled = false;
+        currentTime = MaxTime;
+        Debug.Log("Resetting");
+    }
 
     public void Start()
     {
@@ -555,7 +638,7 @@ public class ScoreManager : MonoBehaviour
         Reset();
         timer.enabled = true;
 
-        if (gameInfo.runs > 7)
+        if (gameInfo.runs > 10)
         {
             gameInfo.StartGameHard();
         }
