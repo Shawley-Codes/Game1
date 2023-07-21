@@ -319,6 +319,7 @@ public class ScoreManager : MonoBehaviour
             {
                 Debug.Log("Q1");
                 sol1 = Correct(snapValue1, snapPoint1, snapValue2, snapPoint2, (ArrayList)OrinalProblems[0], rngList);
+                Debug.Log(sol1);
             }
             else
             {
@@ -328,6 +329,7 @@ public class ScoreManager : MonoBehaviour
             {
                 Debug.Log("Q2");
                 sol2 = Correct(snapValue3, snapPoint3, snapValue4, snapPoint4, (ArrayList)OrinalProblems[1], rngList);
+                Debug.Log(sol2);
             }
             else
             {
@@ -337,6 +339,7 @@ public class ScoreManager : MonoBehaviour
             {
                 Debug.Log("Q3");
                 sol3 = Correct(snapValue5, snapPoint5, (ArrayList)OrinalProblems[2], rngList);
+                Debug.Log(sol3);
             }
             else
             {
@@ -346,16 +349,17 @@ public class ScoreManager : MonoBehaviour
             {
                 Debug.Log("Q4");
                 sol4 = Correct(snapValue6, snapPoint6, (ArrayList)OrinalProblems[3], rngList);
+                Debug.Log(sol4);
             }
             else
             {
                 sol4 = false;
             }
 
-            Debug.Log(sol1);
-            Debug.Log(sol2);
-            Debug.Log(sol3);
-            Debug.Log(sol4);
+            //Debug.Log(sol1);
+            //Debug.Log(sol2);
+            //Debug.Log(sol3);
+            //Debug.Log(sol4);
 
 
             if (sol1)
@@ -417,7 +421,8 @@ public class ScoreManager : MonoBehaviour
             x = int.Parse(snapValue2);
         } else
         {
-            x = 0; //x cannot be 0 so z will always be incorrect
+            //x = 0; //x cannot be 0 so z will always be incorrect
+            x = (int)Problem[0];
         }
 
         //get op
@@ -440,7 +445,8 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            op = " "; //this will trigger the default case
+            //op = " "; //this will trigger the default case
+            op = (string)Problem[1];
         }
 
         //get y
@@ -463,8 +469,14 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            y = 0; //y cannot be 0 so z will always be incorrect
+            //y = 0; //y cannot be 0 so z will always be incorrect
+            y = (int)Problem[2];
         }
+
+        // For Debugging
+        Debug.Log(x);
+        Debug.Log(y);
+        Debug.Log(op);
 
         //compare to z
         switch (op)
@@ -520,7 +532,8 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            x = 0; //x cannot be 0 so z will always be incorrect
+            //x = 0; //x cannot be 0 so z will always be incorrect
+            x = (int)Problem[0];
         }
 
         //get op
@@ -536,7 +549,8 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            op = " "; //this will trigger the default case
+            //op = " "; //this will trigger the default case
+            op = (string)Problem[1];
         }
 
         //get y
@@ -550,10 +564,19 @@ public class ScoreManager : MonoBehaviour
         {
             y = int.Parse(snapValue);
         }
+        // Bug is here
+        // when no bubbles are in the right operand position, y always defaults to 0
+        // works in every other condition
         else
         {
-            y = 0; //y cannot be 0 so z will always be incorrect
+            //y = 0; //y cannot be 0 so z will always be incorrect
+            y = (int)Problem[2];
         }
+
+        // For Debugging
+        Debug.Log(x);
+        Debug.Log(y);
+        Debug.Log(op);
 
         //compare to z
         switch (op)

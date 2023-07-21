@@ -136,10 +136,10 @@ public class GenerateProblems : MonoBehaviour
                 break;
             case 2:
                 //generate x op y eq z within 100
-                x = Random.Range(1, 100);
-                y = Random.Range(1, 100);
+                x = Random.Range(1, 25);
+                y = Random.Range(1, 25);
                 op = returnOperator(Random.Range(0, 3));
-                z = solveZ(x, y, op, 100);
+                z = solveZ(x, y, op, 25);
 
                 //add items to arraylist for storage
                 problem.Add(x);
@@ -149,10 +149,10 @@ public class GenerateProblems : MonoBehaviour
                 break;
             case 3:
                 //generate x op y eq z withinm 1000
-                x = Random.Range(1, 1000);
-                y = Random.Range(1, 1000);
+                x = Random.Range(1, 25);
+                y = Random.Range(1, 25);
                 op = returnOperator(Random.Range(0, 3));
-                z = solveZ(x, y, op, 1000);
+                z = solveZ(x, y, op, 25);
 
                 //add items to arraylist for storage
                 problem.Add(x);

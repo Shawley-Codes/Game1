@@ -31,7 +31,7 @@ public class DragableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (IsDragged = true)
+        if (IsDragged == true)
         {
             transform.localPosition = ObjDragStartPosition + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - MouseDragStartPosition) * DragSpeedMultiplier;
         }
