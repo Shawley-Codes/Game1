@@ -15,12 +15,13 @@ public class GenerateProblems : MonoBehaviour
     public int[] RNGList = new int[6];
     public string[] valuesList = new string[6];
     public ArrayList OriginalProblems = new ArrayList(); //list of original problems used for solution submission
+    public string[] OriginalStrings = new string[4];
 
     public GenerateProblems()
     {
         diff = 1;
     }
-
+    
     public GenerateProblems(int difficulty)
     {
         diff = difficulty;
@@ -50,7 +51,14 @@ public class GenerateProblems : MonoBehaviour
         OriginalProblems.Add(prob3);
         OriginalProblems.Add(prob4);
 
-        //break pointer to original list
+        //create a string of the original problem for later display
+        OriginalStrings[0] = (int)prob1[0] + " " + (string)prob1[1] + " " + (int)prob1[2] + " = " + (int)prob1[3];
+        OriginalStrings[1] = (int)prob2[0] + " " + (string)prob2[1] + " " + (int)prob2[2] + " = " + (int)prob2[3];
+        OriginalStrings[2] = (int)prob3[0] + " " + (string)prob3[1] + " " + (int)prob3[2] + " = " + (int)prob3[3];
+        OriginalStrings[3] = (int)prob4[0] + " " + (string)prob4[1] + " " + (int)prob4[2] + " = " + (int)prob4[3];
+
+
+        //break pointer to original list // note: this still points and changes original
         ArrayList p1 = prob1;
         ArrayList p2 = prob2;
         ArrayList p3 = prob3;
@@ -72,7 +80,7 @@ public class GenerateProblems : MonoBehaviour
                 op = "-";
                 break;
             case 2:
-                op = "*";
+                op = "x";
                 break;
             case 3:
                 op = "/";
@@ -96,7 +104,7 @@ public class GenerateProblems : MonoBehaviour
             case "-":
                 z = x - y;
                 break;
-            case "*":
+            case "x":
                 z = x * y;
                 break;
             case "/":
@@ -136,8 +144,8 @@ public class GenerateProblems : MonoBehaviour
                 break;
             case 2:
                 //generate x op y eq z within 100
-                x = Random.Range(1, 25);
-                y = Random.Range(1, 25);
+                x = Random.Range(1, 30);
+                y = Random.Range(1, 30);
                 op = returnOperator(Random.Range(0, 3));
                 z = solveZ(x, y, op, 25);
 
@@ -149,8 +157,8 @@ public class GenerateProblems : MonoBehaviour
                 break;
             case 3:
                 //generate x op y eq z withinm 1000
-                x = Random.Range(1, 25);
-                y = Random.Range(1, 25);
+                x = Random.Range(1, 100);
+                y = Random.Range(1, 100);
                 op = returnOperator(Random.Range(0, 3));
                 z = solveZ(x, y, op, 25);
 
@@ -196,11 +204,11 @@ public class GenerateProblems : MonoBehaviour
 
         int rng5 = Random.Range(0, 3);
         string value5 = prob3[rng5].ToString();
-        prob3[rng5] = "   ";
+        prob3[rng5] = "  ";
 
         int rng6 = Random.Range(0, 3);
         string value6 = prob4[rng6].ToString();
-        prob4[rng6] = "   ";
+        prob4[rng6] = "  ";
 
         RNGList[0] = rng1;
         RNGList[1] = rng2;

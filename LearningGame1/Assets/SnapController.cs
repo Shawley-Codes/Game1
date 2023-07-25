@@ -12,7 +12,7 @@ public class SnapController : MonoBehaviour
     public float snapRange = 0.5f;
     public List<Transform> activePoints;
     public Dictionary<Transform, string> valueDict = new Dictionary<Transform, string>();
-    List<Transform> occupiedSnapPoints = new List<Transform>();
+    public List<Transform> occupiedSnapPoints = new List<Transform>();
     int offset = 20;
 
     // Start is called before the first frame update

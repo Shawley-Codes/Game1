@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     //public int currentdifficulty;
     public PopulateUI gameInfo;
     public ArrayList OrinalProblems;
+    public string[] OriginalStrings;
     public string[] valuesList;
     SortedDictionary<Transform, string> sortedDict;
     public int[] rngList;
@@ -50,6 +51,14 @@ public class ScoreManager : MonoBehaviour
     float currentTime;
     public int MaxTime = 30;
 
+    public GameObject ResetButton;
+
+    public TextMeshProUGUI Q1;
+    public TextMeshProUGUI Q2;
+    public TextMeshProUGUI Q3;
+    public TextMeshProUGUI Q4;
+    public TextMeshProUGUI OrigTXT;
+
     public void Submit()
     {
         //function that calls to check problem solutions.
@@ -62,11 +71,12 @@ public class ScoreManager : MonoBehaviour
         valuesList = gameInfo.values;
         timer.enabled = false;
         //OrinalProblems = gameInfo.ProblemList;
-
+        
         if (gameInfo.gamemode)
         {
             //if time trials, generate a new set of problems and award score for that level.
             Debug.Log("Submit Time Trials");
+            OriginalStrings = gameInfo.Originals;
 
             //sorted dictionary will not work so a method instead is to check for which snaps will correlate to each problem
             //Debug.Log(snaps.valueDict);
@@ -228,6 +238,7 @@ public class ScoreManager : MonoBehaviour
             } else
             {
                 //send score to server via postrequest
+                this.showOriginals();
                 MenuButton.SetActive(true);
             }
             //else if questions were incorrect, activate return to menu button
@@ -395,6 +406,8 @@ public class ScoreManager : MonoBehaviour
                 wrong4.SetActive(true);
             }
 
+            ResetButton.SetActive(true);
+
         }
     }
 
@@ -493,7 +506,7 @@ public class ScoreManager : MonoBehaviour
                     return true;
                 }
                 break;
-            case "*":
+            case "x":
                 if (x != 0 && y != 0 && (int)Problem[3] == x * y)
                 {
                     return true;
@@ -593,7 +606,7 @@ public class ScoreManager : MonoBehaviour
                     return true;
                 }
                 break;
-            case "*":
+            case "x":
                 if (x != 0 && y != 0 && (int)Problem[3] == x * y)
                 {
                     return true;
@@ -634,7 +647,12 @@ public class ScoreManager : MonoBehaviour
         wrong2.SetActive(false);
         wrong3.SetActive(false);
         wrong4.SetActive(false);
-        
+
+        Q1.text = "";
+        Q2.text = "";
+        Q3.text = "";
+        Q4.text = "";
+        OrigTXT.text = "";
     }
 
     public void End()
@@ -675,6 +693,32 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    public void ResetButtonClicked()
+    {
+        //move dragables
+        moveable1.transform.localPosition = moveable1.GetComponentInChildren<DragableObject>().OriginalPosition;
+        moveable2.transform.localPosition = moveable2.GetComponentInChildren<DragableObject>().OriginalPosition;
+        moveable3.transform.localPosition = moveable3.GetComponentInChildren<DragableObject>().OriginalPosition;
+        moveable4.transform.localPosition = moveable4.GetComponentInChildren<DragableObject>().OriginalPosition;
+        moveable5.transform.localPosition = moveable5.GetComponentInChildren<DragableObject>().OriginalPosition;
+        moveable6.transform.localPosition = moveable6.GetComponentInChildren<DragableObject>().OriginalPosition;
+        //clear dragables dict
+        snaps.occupiedSnapPoints.Clear();
+        snaps.valueDict.Clear();
+
+        right1.SetActive(false);
+        right2.SetActive(false);
+        right3.SetActive(false);
+        right4.SetActive(false);
+        wrong1.SetActive(false);
+        wrong2.SetActive(false);
+        wrong3.SetActive(false);
+        wrong4.SetActive(false);
+        //reset submit button
+        MenuButton.SetActive(false);
+        ResetButton.SetActive(false);
+    }
+
     private void Update()
     {
         if (timer.enabled)
@@ -703,4 +747,25 @@ public class ScoreManager : MonoBehaviour
         timer.text = string.Format("{0:00}", seconds);
     }
 
+    public void showOriginals()
+    {
+        //Debug.Log("Showing Originals");
+        //ArrayList q1 = (ArrayList)OrinalProblems[0];
+        //ArrayList q2 = (ArrayList)OrinalProblems[1];
+        //ArrayList q3 = (ArrayList)OrinalProblems[2];
+        //ArrayList q4 = (ArrayList)OrinalProblems[3];
+        //Debug.Log(q1[0]);
+
+
+        //string q1s = (int)q1[0] + " " + (string)q1[1] + " " + (int)q1[2] + " = " + (int)q1[3];
+        //string q2s = (int)q2[0] + " " + (string)q2[1] + " " + (int)q2[2] + " = " + (int)q2[3];
+        //string q3s = (int)q3[0] + " " + (string)q3[1] + " " + (int)q3[2] + " = " + (int)q3[3];
+        //string q4s = (int)q4[0] + " " + (string)q4[1] + " " + (int)q4[2] + " = " + (int)q4[3];
+        //Debug.Log(q1s);
+        Q1.text = OriginalStrings[0];
+        Q2.text = OriginalStrings[1];
+        Q3.text = OriginalStrings[2];
+        Q4.text = OriginalStrings[3];
+        OrigTXT.text = "Original Problems";
+    }
 }

@@ -15,6 +15,7 @@ public class PopulateUI : MonoBehaviour
     public TextMeshProUGUI Q4UI;
 
     public ArrayList ProblemList;
+    public string[] Originals;
     public string[] values;
     public int[] rngList;
 
@@ -83,6 +84,7 @@ public class PopulateUI : MonoBehaviour
         //problems.setDifficulty(1);
         problems.createNewProblems(1);
         ProblemList = problems.OriginalProblems;
+        Originals = problems.OriginalStrings;
         Q1UI.text = problems.problem1;
         Q2UI.text = problems.problem2;
         Q3UI.text = problems.problem3;
