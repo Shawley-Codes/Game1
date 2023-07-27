@@ -77,11 +77,23 @@ public class PopulateUI : MonoBehaviour
     public GameObject snap4_2_hard;
     public GameObject snap4_3_hard;
     public GameObject snap4_4_hard;
+    public GameObject instructions;
+
+    public AudioSource src;
+    public AudioClip win;
+    public AudioClip lose;
+    public AudioClip chalk1;
+    public AudioClip chalk2;
+    public AudioClip chalk3;
+    public AudioClip chalk4;
+    public AudioClip chalk5;
 
     public void StartGameEasy()
     {
         GenerateProblems problems = gameObject.AddComponent<GenerateProblems>();
         //problems.setDifficulty(1);
+        src.clip = chalk2;
+        src.Play();
         problems.createNewProblems(1);
         ProblemList = problems.OriginalProblems;
         Originals = problems.OriginalStrings;
@@ -89,6 +101,8 @@ public class PopulateUI : MonoBehaviour
         Q2UI.text = problems.problem2;
         Q3UI.text = problems.problem3;
         Q4UI.text = problems.problem4;
+
+        
 
         values = problems.valuesList;
         rngList = problems.RNGList;
@@ -109,12 +123,17 @@ public class PopulateUI : MonoBehaviour
         if (gamemode)
         {
             runs += 1;
+        } else
+        {
+            instructions.SetActive(true);
         }
     }
     public void StartGameMedium()
     {
         GenerateProblems problems = gameObject.AddComponent<GenerateProblems>();
         //problems.setDifficulty(1);
+        src.clip = chalk2;
+        src.Play();
         problems.createNewProblems(2);
         ProblemList = problems.OriginalProblems;
         Q1UI.text = problems.problem1;
@@ -147,6 +166,8 @@ public class PopulateUI : MonoBehaviour
     {
         GenerateProblems problems = gameObject.AddComponent<GenerateProblems>();
         //problems.setDifficulty(1);
+        src.clip = chalk2;
+        src.Play();
         problems.createNewProblems(3);
         ProblemList = problems.OriginalProblems;
         Q1UI.text = problems.problem1;

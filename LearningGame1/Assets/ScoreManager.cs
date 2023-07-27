@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject wrong2;
     public GameObject wrong3;
     public GameObject wrong4;
+    public GameObject instructionText;
 
 
     bool sol1;
@@ -58,6 +60,37 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI Q3;
     public TextMeshProUGUI Q4;
     public TextMeshProUGUI OrigTXT;
+
+    public AudioSource src;
+    public AudioClip win;
+    public AudioClip lose;
+    public AudioClip chalk1;
+    public AudioClip chalk2;
+    public AudioClip chalk3;
+    public AudioClip chalk4;
+    public AudioClip chalk5;
+
+    IEnumerator Upload(int points)
+    {
+        string url = "https://capstone.rasinnovation.org:8080/process_points";
+        string game = "game1";
+
+        WWWForm form = new WWWForm();
+        form.AddField("game_name", game);
+        form.AddField("points", points);
+
+        UnityWebRequest request = UnityWebRequest.Post(url, form);
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Error sending form: " + request.error);
+        } else
+        {
+            Debug.Log("Form Data sent successfully");
+        }
+    }
 
     public void Submit()
     {
@@ -190,10 +223,10 @@ public class ScoreManager : MonoBehaviour
                 sol4 = false;
             }
 
-            Debug.Log(sol1);
-            Debug.Log(sol2);
-            Debug.Log(sol3);
-            Debug.Log(sol4);
+            //Debug.Log(sol1);
+            //Debug.Log(sol2);
+            //Debug.Log(sol3);
+            //Debug.Log(sol4);
 
 
             if (sol1)
@@ -235,11 +268,21 @@ public class ScoreManager : MonoBehaviour
                 points += pointValue + (pointValue * (Mathf.FloorToInt(currentTime % 60) / 10));
                 score.text = "Score: " + points.ToString();
                 NextSetButton.SetActive(true);
+                src.clip = win;
+                src.Play();
             } else
             {
                 //send score to server via postrequest
+                if (points > 0)
+                {
+                    Debug.Log("Sending: " + points);
+                    Upload(points);
+                }
                 this.showOriginals();
+                
                 MenuButton.SetActive(true);
+                src.clip = lose;
+                src.Play();
             }
             //else if questions were incorrect, activate return to menu button
 
@@ -248,7 +291,7 @@ public class ScoreManager : MonoBehaviour
         {
             //if practice set a new button to active (return to main menu)
             MenuButton.SetActive(true);
-
+            instructionText.SetActive(false);
             //sorted dictionary will not work so a method instead is to check for which snaps will correlate to each problem
             //Debug.Log(snaps.valueDict);
             Transform snapPoint1 = null;
@@ -407,6 +450,16 @@ public class ScoreManager : MonoBehaviour
             }
 
             ResetButton.SetActive(true);
+            if (sol1 && sol2 && sol3 && sol4)
+            {
+                src.clip = win;
+                src.Play();
+            } else
+            {
+                src.clip = lose;
+                src.Play();
+            }
+
 
         }
     }
@@ -626,6 +679,8 @@ public class ScoreManager : MonoBehaviour
 
     public void Reset()
     {
+        src.clip = chalk5;
+        src.Play();
         moveable1.transform.localPosition = moveable1.GetComponentInChildren<DragableObject>().OriginalPosition;
         moveable2.transform.localPosition = moveable2.GetComponentInChildren<DragableObject>().OriginalPosition;
         moveable3.transform.localPosition = moveable3.GetComponentInChildren<DragableObject>().OriginalPosition;
@@ -653,6 +708,8 @@ public class ScoreManager : MonoBehaviour
         Q3.text = "";
         Q4.text = "";
         OrigTXT.text = "";
+
+        
     }
 
     public void End()
@@ -717,6 +774,9 @@ public class ScoreManager : MonoBehaviour
         //reset submit button
         MenuButton.SetActive(false);
         ResetButton.SetActive(false);
+
+        src.clip = chalk4;
+        src.Play();
     }
 
     private void Update()

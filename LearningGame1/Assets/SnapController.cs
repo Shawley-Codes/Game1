@@ -15,6 +15,9 @@ public class SnapController : MonoBehaviour
     public List<Transform> occupiedSnapPoints = new List<Transform>();
     int offset = 20;
 
+
+
+
     // Start is called before the first frame update
     public void SetDragables(ArrayList activeSnaps)
     {
@@ -34,6 +37,7 @@ public class SnapController : MonoBehaviour
     //remove snaps from occupied list if moved
     private void OnDragStart(DragableObject dragable)
     {
+
         Transform CurrentSnapPoint = null;
         if(dragable.OriginalPosition != dragable.transform.localPosition)
         {
