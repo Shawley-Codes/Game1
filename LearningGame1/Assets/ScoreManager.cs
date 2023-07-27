@@ -77,7 +77,7 @@ public class ScoreManager : MonoBehaviour
 
         WWWForm form = new WWWForm();
         form.AddField("game_name", game);
-        form.AddField("points", points);
+        form.AddField("points", points.ToString());
 
         UnityWebRequest request = UnityWebRequest.Post(url, form);
 
