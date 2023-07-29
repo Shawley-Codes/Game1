@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
+
 public class ScoreManager : MonoBehaviour
 {
     public int currentScore;
@@ -72,17 +73,53 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator Upload(int points)
     {
-        string url = "https://capstone.rasinnovation.org:8080/process_points";
-        string game = "game1";
 
+        // Get the full URL
+        string url = Application.absoluteURL;
+        string username = "testuser1";
+        int user_id = 1;
+
+        if (!string.IsNullOrEmpty(url))
+        {
+            // Split the URL
+            string[] urlParts = url.Split('?');
+
+            for (int i = 1; i < urlParts.Length; i++)
+            {
+                string[] keyValue = urlParts[i].Split('=');
+
+                if (keyValue.Length == 2)
+                {
+                    string key = keyValue[0];
+                    string value = keyValue[1];
+
+                    Debug.Log(key + " : " + value);
+
+                    if (key == "username")
+                    {
+                        username = value;
+                    }
+                    else if (key == "user_id")
+                    {
+                        Debug.Log("Attempting parse");
+                        user_id = int.Parse(value);
+                    }
+                }
+            }
+        }
+
+
+        string urlMain = "https://capstone.rasinnovation.org:8080/process_points";
+        string game = "game1";
+        Debug.Log(username + " : " + user_id);
         WWWForm form = new WWWForm();
+
+        form.AddField("user_id", user_id);
+        form.AddField("username", username);
         form.AddField("game_name", game);
         form.AddField("points", points.ToString());
-
-        UnityWebRequest request = UnityWebRequest.Post(url, form);
-
+        UnityWebRequest request = UnityWebRequest.Post(urlMain, form);
         yield return request.SendWebRequest();
-
         if (request.result != UnityWebRequest.Result.Success)
         {
             Debug.Log("Error sending form: " + request.error);
@@ -276,7 +313,7 @@ public class ScoreManager : MonoBehaviour
                 if (points > 0)
                 {
                     Debug.Log("Sending: " + points);
-                    Upload(points);
+                    StartCoroutine(Upload(points));
                 }
                 this.showOriginals();
                 
